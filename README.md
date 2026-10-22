@@ -2,6 +2,32 @@
 
 Portfolio profesional bilingüe desarrollado con React, TypeScript y Vite.
 
+## Chat profesional integrado
+
+El portfolio incluye el componente `src/ChatWidget.tsx` en la sección **Asistente**. No sustituye el diseño del portfolio ni muestra la página independiente del agente: es únicamente una tarjeta de conversación integrada en el layout existente.
+
+En desarrollo, Vite redirige `/agent-api` al Worker público para evitar problemas de CORS. También se puede apuntar temporalmente a un Worker local mediante `VITE_AGENT_API_URL`. En producción el componente utiliza directamente:
+
+```text
+https://agente-profesional-david.agentdavidmartinez.workers.dev
+```
+
+Antes de publicar el portfolio hay que desplegar la versión del Worker que permite los orígenes del portfolio (`portfolio-david-martinez.vercel.app`, `davidovi55.github.io` y localhost). Esa modificación está en la carpeta local `agente-david-cloudflare`, en la versión 5.0 actualizada.
+
+## Analítica y privacidad
+
+- Vercel Web Analytics mide las visitas generales del portfolio.
+- El Worker registra en Cloudflare Analytics Engine únicamente eventos agregados del asistente: apertura, selección de modo/rol, reinicio, respuestas correctas y errores.
+- No se envían a Analytics Engine las preguntas, respuestas, emails, teléfonos ni el historial de conversación.
+- La analítica es opcional y nunca bloquea el uso del portfolio ni del chat.
+
+Para probar el frontend con un Worker local:
+
+```cmd
+set VITE_AGENT_API_URL=http://127.0.0.1:8787
+npm run dev
+```
+
 ## Ejecutar la web
 
 Desde Anaconda Prompt:
@@ -13,6 +39,8 @@ npm run dev
 ```
 
 Abre la URL que muestre Vite, normalmente `http://localhost:5173`.
+
+Prueba el asistente desde la sección **Asistente**. Comprueba que el indicador aparece como disponible, que una pregunta devuelve respuesta con listas y enlaces correctamente formateados, que funcionan los selectores de modo/rol y que el botón «Nueva conversación» borra el historial. Si el indicador aparece no disponible, revisa primero que el Worker tenga configurada la clave de Gemini.
 
 ## Datos personales y enlaces
 

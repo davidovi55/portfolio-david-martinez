@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { certificates, contact, content, type Language } from './content'
+import ChatWidget from './ChatWidget'
+import { Analytics } from '@vercel/analytics/react'
 
 function hasValue(value: string) {
   return value.trim().length > 0
@@ -22,6 +24,7 @@ export default function App() {
 
   return (
     <>
+      <Analytics />
       <header className="header">
         <div className="container header-content">
           <a className="brand" href="#top" aria-label="David Martínez Barragán">
@@ -79,6 +82,24 @@ export default function App() {
                 <a className="text-link" href={contact.github} target="_blank" rel="noreferrer">GitHub ↗</a>
               )}
             </div>
+          </div>
+        </section>
+
+        <section className="section assistant-section" id="assistant">
+          <div className="container assistant-layout">
+            <div className="assistant-intro">
+              <p className="label">{language === 'es' ? 'UNA FORMA DISTINTA DE CONOCERME' : 'A DIFFERENT WAY TO GET TO KNOW ME'}</p>
+              <h2 className="section-title">{language === 'es' ? 'Pregunta directamente.' : 'Ask directly.'}</h2>
+              <p>{language === 'es'
+                ? 'He creado este asistente para que un equipo pueda explorar mi experiencia con más contexto que en un CV tradicional.'
+                : 'I built this assistant so a team can explore my experience with more context than a traditional CV.'}</p>
+              <ul>
+                <li>{language === 'es' ? 'Responde sobre proyectos, herramientas y experiencia end-to-end.' : 'Answers about projects, tools and end-to-end delivery.'}</li>
+                <li>{language === 'es' ? 'Puede comparar mi perfil con una oferta concreta.' : 'It can compare my profile with a specific job offer.'}</li>
+                <li>{language === 'es' ? 'Adapta la respuesta al rol técnico que estés valorando.' : 'It adapts its answer to the technical role you are considering.'}</li>
+              </ul>
+            </div>
+            <ChatWidget language={language} />
           </div>
         </section>
 

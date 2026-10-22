@@ -88,6 +88,7 @@ export const content = {
     languageLabel: 'EN',
     menu: 'Menú',
     navigation: [
+      ['assistant', 'Asistente'],
       ['about', 'Sobre mí'],
       ['projects', 'Proyectos'],
       ['experience', 'Experiencia'],
@@ -272,6 +273,7 @@ export const content = {
     languageLabel: 'ES',
     menu: 'Menu',
     navigation: [
+      ['assistant', 'Assistant'],
       ['about', 'About'],
       ['projects', 'Projects'],
       ['experience', 'Experience'],
